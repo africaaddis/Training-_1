@@ -1,0 +1,1371 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peace & Security Management System - Complete Training Tutorial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: #D4AF37;
+            color: #2c3e50;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-top: 15px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            margin: 0 2px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .lang-btn.active {
+            background: #D4AF37;
+            color: #2c3e50;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-tabs ul {
+            display: flex;
+            list-style: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-tabs li {
+            padding: 0;
+        }
+
+        .nav-tabs a {
+            display: inline-block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tabs a:hover {
+            color: #3498db;
+            background: #f0f7ff;
+        }
+
+        .nav-tabs a.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin: 20px 0 10px 0;
+            font-size: 1.3rem;
+        }
+
+        .card h4 {
+            color: #3498db;
+            margin: 15px 0 8px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Role Cards */
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .role-card.active {
+            border-color: #3498db;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        }
+
+        .role-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .role-icon i {
+            font-size: 30px;
+            color: white;
+        }
+
+        .role-card h3 {
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+
+        .role-card p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-pending { background: #fff3cd; color: #856404; }
+        .badge-error { background: #f8d7da; color: #721c24; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        .badge-warning { background: #fff3cd; color: #856404; }
+
+        /* Permission Table */
+        .permission-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+
+        .permission-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .permission-table td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .permission-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            background: #f8f9fa;
+        }
+
+        .check-yes { color: #27ae60; font-weight: bold; }
+        .check-no { color: #e74c3c; }
+
+        /* Steps */
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+        }
+
+        /* Tips */
+        .tip-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .tip-box i {
+            color: #3498db;
+            margin-right: 10px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box i {
+            color: #f39c12;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+                margin-top: 40px;
+            }
+            .language-selector {
+                top: 10px;
+                right: 10px;
+            }
+            .lang-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+            .nav-tabs ul {
+                padding: 0 10px;
+            }
+            .nav-tabs a {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+            .card {
+                padding: 18px;
+            }
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+            .data-table {
+                font-size: 11px;
+            }
+            .data-table th, .data-table td {
+                padding: 6px;
+            }
+            .step-list li {
+                flex-direction: column;
+            }
+            .step-number {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media print {
+            .language-selector, .nav-tabs, .scroll-top {
+                display: none;
+            }
+            .tab-content {
+                display: block !important;
+            }
+            .card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="en">🇬🇧 English</button>
+        <button class="lang-btn" data-lang="am">🇪🇹 አማርኛ</button>
+        <button class="lang-btn" data-lang="om">🇪🇹 Oromoo</button>
+        <button class="lang-btn" data-lang="ti">🇪🇹 ትግርኛ</button>
+    </div>
+    <h1><i class="fas fa-shield-alt"></i> <span data-i18n="title">Peace & Security Management System</span></h1>
+    <p><span data-i18n="subtitle">Complete Training Tutorial for All User Types</span></p>
+    <div class="badge"><i class="fas fa-graduation-cap"></i> <span data-i18n="badge">Official Training Guide</span></div>
+</div>
+
+<div class="nav-tabs">
+    <ul>
+        <li><a href="#" data-tab="overview" class="active"><i class="fas fa-info-circle"></i> <span data-i18n="nav_overview">Overview</span></a></li>
+        <li><a href="#" data-tab="blok"><i class="fas fa-cube"></i> <span data-i18n="nav_blok">Blok User</span></a></li>
+        <li><a href="#" data-tab="ketena"><i class="fas fa-layer-group"></i> <span data-i18n="nav_ketena">Ketena User</span></a></li>
+        <li><a href="#" data-tab="district"><i class="fas fa-building"></i> <span data-i18n="nav_district">District User</span></a></li>
+        <li><a href="#" data-tab="subcity-staff"><i class="fas fa-user-tie"></i> <span data-i18n="nav_subcity_staff">Sub-City Staff</span></a></li>
+        <li><a href="#" data-tab="subcity-admin"><i class="fas fa-city"></i> <span data-i18n="nav_subcity_admin">Sub-City Admin</span></a></li>
+        <li><a href="#" data-tab="city"><i class="fas fa-landmark"></i> <span data-i18n="nav_city">City User</span></a></li>
+        <li><a href="#" data-tab="system-admin"><i class="fas fa-server"></i> <span data-i18n="nav_system_admin">System Admin</span></a></li>
+        <li><a href="#" data-tab="common"><i class="fas fa-tools"></i> <span data-i18n="nav_common">Common Features</span></a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <!-- OVERVIEW TAB -->
+    <div id="overview" class="tab-content active">
+        <div class="card">
+            <h2><i class="fas fa-info-circle"></i> <span data-i18n="overview_title">System Overview</span></h2>
+            <p data-i18n="overview_text">The Peace & Security Management System is a comprehensive platform designed for the Addis Ababa Peace & Security Bureau. It manages peace keepers, crime cases, attendance, certificates, identity cards, and communication across all administrative levels of the city.</p>
+            
+            <div class="tip-box">
+                <i class="fas fa-question-circle"></i>
+                <strong data-i18n="overview_tip_title">Who is this training for?</strong>
+                <span data-i18n="overview_tip_text">This tutorial covers all user types from Blok users (field level) to Super Admins (system administrators).</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-sitemap"></i> <span data-i18n="hierarchy_title">System Hierarchy</span></h2>
+            <div style="text-align: center; padding: 20px;">
+                <div style="background: linear-gradient(135deg, #2c3e50, #3498db); color: white; padding: 15px; border-radius: 10px; margin: 5px 0;">
+                    <i class="fas fa-landmark"></i> <strong data-i18n="city_level">City</strong> (Addis Ababa)
+                </div>
+                <div style="background: linear-gradient(135deg, #34495e, #2980b9); color: white; padding: 12px; border-radius: 8px; margin: 5px 20px;">
+                    <i class="fas fa-city"></i> <strong data-i18n="subcity_level">Sub-City</strong> <span data-i18n="subcity_count">(10 Sub-Cities)</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #3b5998, #1a5276); color: white; padding: 10px; border-radius: 8px; margin: 5px 40px;">
+                    <i class="fas fa-building"></i> <strong data-i18n="district_level">District</strong> <span data-i18n="district_count">(Multiple per Sub-City)</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #4a69bd, #1e3799); color: white; padding: 8px; border-radius: 8px; margin: 5px 60px;">
+                    <i class="fas fa-layer-group"></i> <strong data-i18n="ketena_level">Ketena</strong> <span data-i18n="ketena_count">(Multiple per District)</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #5dade2, #2471a3); color: white; padding: 8px; border-radius: 8px; margin: 5px 80px;">
+                    <i class="fas fa-cube"></i> <strong data-i18n="blok_level">Blok</strong> <span data-i18n="blok_count">(Multiple per Ketena)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-users"></i> <span data-i18n="roles_title">User Roles at a Glance</span></h2>
+            <div class="role-grid">
+                <div class="role-card" onclick="switchToTab('blok')">
+                    <div class="role-icon"><i class="fas fa-cube"></i></div>
+                    <h3 data-i18n="role_blok">Blok User</h3>
+                    <p data-i18n="role_blok_desc">Field-level user - Manages a single block within a Ketena</p>
+                </div>
+                <div class="role-card" onclick="switchToTab('ketena')">
+                    <div class="role-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3 data-i18n="role_ketena">Ketena User</h3>
+                    <p data-i18n="role_ketena_desc">Zone-level user - Manages a single Ketena</p>
+                </div>
+                <div class="role-card" onclick="switchToTab('district')">
+                    <div class="role-icon"><i class="fas fa-building"></i></div>
+                    <h3 data-i18n="role_district">District User</h3>
+                    <p data-i18n="role_district_desc">District-level manager - Approves and manages</p>
+                </div>
+                <div class="role-card" onclick="switchToTab('subcity-staff')">
+                    <div class="role-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3 data-i18n="role_subcity_staff">Sub-City Staff</h3>
+                    <p data-i18n="role_subcity_staff_desc">Sub-City operational staff - Data entry and registration</p>
+                </div>
+                <div class="role-card" onclick="switchToTab('subcity-admin')">
+                    <div class="role-icon"><i class="fas fa-city"></i></div>
+                    <h3 data-i18n="role_subcity_admin">Sub-City Admin</h3>
+                    <p data-i18n="role_subcity_admin_desc">Sub-City administrator - Approves certificates, manages users</p>
+                </div>
+                <div class="role-card" onclick="switchToTab('city')">
+                    <div class="role-icon"><i class="fas fa-landmark"></i></div>
+                    <h3 data-i18n="role_city">City User</h3>
+                    <p data-i18n="role_city_desc">City-level administrator - Full city-wide oversight</p>
+                </div>
+                <div class="role-card" onclick="switchToTab('system-admin')">
+                    <div class="role-icon"><i class="fas fa-server"></i></div>
+                    <h3 data-i18n="role_system_admin">System Admin</h3>
+                    <p data-i18n="role_system_admin_desc">Technical administrator - User management, logs, bulk operations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOK USER TAB -->
+    <div id="blok" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-cube"></i> <span data-i18n="blok_title">Blok User Training</span></h2>
+            <div class="tip-box">
+                <i class="fas fa-info-circle"></i>
+                <strong data-i18n="blok_summary_title">Role Summary:</strong>
+                <span data-i18n="blok_summary_text">Blok users are field-level personnel who manage a specific block within a Ketena. They are the closest point of contact for peace keepers.</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-key"></i> <span data-i18n="login_title">Login and First Steps</span></h3>
+            <ul class="step-list">
+                <li><div class="step-number">1</div><div class="step-content"><h4 data-i18n="step1_title">Access the Login Page</h4><p data-i18n="step1_text">Open your browser and navigate to the system URL provided by your administrator.</p></div></li>
+                <li><div class="step-number">2</div><div class="step-content"><h4 data-i18n="step2_title">Enter Your Credentials</h4><p data-i18n="step2_text">Username: Your assigned username<br>PIN/Password: Your 6-digit PIN</p></div></li>
+                <li><div class="step-number">3</div><div class="step-content"><h4 data-i18n="step3_title">Complete CAPTCHA (if shown)</h4><p data-i18n="step3_text">Enter the security code exactly as displayed. It is case-sensitive.</p></div></li>
+                <li><div class="step-number">4</div><div class="step-content"><h4 data-i18n="step4_title">Click Login</h4><p data-i18n="step4_text">You will be taken to your personalized dashboard.</p></div></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-tachometer-alt"></i> <span data-i18n="dashboard_title">Your Dashboard</span></h3>
+            <p data-i18n="dashboard_text">As a Blok user, your dashboard shows:</p>
+            <table class="data-table">
+                <thead><tr><th data-i18n="component">Component</th><th data-i18n="description">Description</th></tr></thead>
+                <tbody>
+                    <tr><td data-i18n="welcome_section">Welcome Section</td><td data-i18n="welcome_desc">Shows your name, role (Blok), and location</td></tr>
+                    <tr><td data-i18n="stats_cards">Statistics Cards</td><td data-i18n="stats_desc">Total peace keepers, crime cases, active members, pending members in your Blok</td></tr>
+                    <tr><td data-i18n="quick_actions">Quick Actions</td><td data-i18n="quick_desc">View Peace Keepers, View Crime Cases, QR Attendance, Request Identity Card</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-user-plus"></i> <span data-i18n="register_pk_title">Registering a Peace Keeper</span></h3>
+            <ul class="step-list">
+                <li><div class="step-number">1</div><div class="step-content"><h4 data-i18n="reg_step1">Navigate to Register Peace Keeper</h4><p data-i18n="reg_step1_text">Click Register Peace Keeper in the sidebar menu.</p></div></li>
+                <li><div class="step-number">2</div><div class="step-content"><h4 data-i18n="reg_step2">Fill Registration Information</h4><p data-i18n="reg_step2_text">Member Type: Select "Peace Keepers" (most common)<br>Round: Select the appropriate round (1-8)</p></div></li>
+                <li><div class="step-number">3</div><div class="step-content"><h4 data-i18n="reg_step3">Fill Personal Information</h4><p data-i18n="reg_step3_text">Full Name, Gender, Age (18+), Date of Birth (Ethiopian), Birth Place</p></div></li>
+                <li><div class="step-number">4</div><div class="step-content"><h4 data-i18n="reg_step4">Address Information (Auto-filled)</h4><p data-i18n="reg_step4_text">Ketena and Blok are auto-filled with your location. Enter House No and Ethnic Group.</p></div></li>
+                <li><div class="step-number">5</div><div class="step-content"><h4 data-i18n="reg_step5">Contact Information</h4><p data-i18n="reg_step5_text">Telephone (09xxxxxxxx format), Emergency Contact Name, Emergency Telephone, Emergency Address</p></div></li>
+                <li><div class="step-number">6</div><div class="step-content"><h4 data-i18n="reg_step6">Upload Photo</h4><p data-i18n="reg_step6_text">Click the upload area, select a photo (JPG/PNG, max 5MB), wait for preview.</p></div></li>
+                <li><div class="step-number">7</div><div class="step-content"><h4 data-i18n="reg_step7">Submit</h4><p data-i18n="reg_step7_text">Click Register Peace Keeper and wait for confirmation.</p></div></li>
+            </ul>
+            <div class="tip-box"><i class="fas fa-lightbulb"></i> <span data-i18n="reg_tip">Pro Tip: If you enter Age first, the system will suggest a Date of Birth automatically!</span></div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-gavel"></i> <span data-i18n="register_crime_title">Registering a Crime Case</span></h3>
+            <ul class="step-list">
+                <li><div class="step-number">1</div><div class="step-content"><h4 data-i18n="crime_step1">Navigate to Register Crime</h4><p data-i18n="crime_step1_text">Click Register Crime in the sidebar menu.</p></div></li>
+                <li><div class="step-number">2</div><div class="step-content"><h4 data-i18n="crime_step2">Case Details</h4><p data-i18n="crime_step2_text">Case Name (auto-suggest available), Description of incident</p></div></li>
+                <li><div class="step-number">3</div><div class="step-content"><h4 data-i18n="crime_step3">Date and Time</h4><p data-i18n="crime_step3_text">Date (Ethiopian format dd/mm/yyyy), Time of incident</p></div></li>
+                <li><div class="step-number">4</div><div class="step-content"><h4 data-i18n="crime_step4">Location (Auto-filled)</h4><p data-i18n="crime_step4_text">Ketena and Blok are auto-filled with your location.</p></div></li>
+                <li><div class="step-number">5</div><div class="step-content"><h4 data-i18n="crime_step5">Response and Status</h4><p data-i18n="crime_step5_text">Initial Response, Current Status, Investigation Start Date, Informed By</p></div></li>
+                <li><div class="step-number">6</div><div class="step-content"><h4 data-i18n="crime_step6">Submit</h4><p data-i18n="crime_step6_text">Click Submit Crime Case to save.</p></div></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-qrcode"></i> <span data-i18n="attendance_title">QR Attendance Check-In/Out</span></h3>
+            <ul class="step-list">
+                <li><div class="step-number">1</div><div class="step-content"><h4 data-i18n="att_step1">Open Insert Attendance</h4><p data-i18n="att_step1_text">Click Insert Attendance in the sidebar.</p></div></li>
+                <li><div class="step-number">2</div><div class="step-content"><h4 data-i18n="att_step2">For Check-In</h4><p data-i18n="att_step2_text">Select Check In tab → Start Scanner → Allow camera → Scan QR code → Check In</p></div></li>
+                <li><div class="step-number">3</div><div class="step-content"><h4 data-i18n="att_step3">For Check-Out</h4><p data-i18n="att_step3_text">Select Check Out tab → Enter peace keeper ID → Check Out</p></div></li>
+            </ul>
+            <div class="warning-box"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="att_warning">Important: Each peace keeper can only check in ONCE per day. The system prevents duplicate check-ins.</span></div>
+        </div>
+    </div>
+
+    <!-- KETENA USER TAB -->
+    <div id="ketena" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-layer-group"></i> <span data-i18n="ketena_title">Ketena User Training</span></h2>
+            <div class="tip-box"><i class="fas fa-info-circle"></i> <strong data-i18n="ketena_summary_title">Role Summary:</strong> <span data-i18n="ketena_summary_text">Ketena users manage a specific zone (Ketena) within a district. They oversee multiple Bloks and have broader permissions than Blok users.</span></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-chart-line"></i> <span data-i18n="ketena_dashboard_title">Dashboard Overview</span></h3>
+            <p data-i18n="ketena_dashboard_text">As a Ketena user, your dashboard shows statistics for your ENTIRE Ketena (all Bloks within it).</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-user-plus"></i> <span data-i18n="ketena_register_title">Registering Peace Keepers</span></h3>
+            <p data-i18n="ketena_register_note"><strong>Key Difference:</strong> Your Ketena field is AUTO-FILLED, but you can select different Bloks within your Ketena.</p>
+        </div>
+    </div>
+
+    <!-- DISTRICT USER TAB -->
+    <div id="district" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-building"></i> <span data-i18n="district_title">District User Training</span></h2>
+            <div class="tip-box"><i class="fas fa-info-circle"></i> <strong data-i18n="district_summary_title">Role Summary:</strong> <span data-i18n="district_summary_text">District users are managers who oversee an entire district. They can approve peace keepers, manage crime cases, create schedules, and manage identity cards.</span></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-check-circle"></i> <span data-i18n="district_approve_title">Approving Peace Keepers (Status Change)</span></h3>
+            <p data-i18n="district_approve_text">This is a critical District user responsibility. Ketena/Blok users register peace keepers, but YOU approve them.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-calendar-plus"></i> <span data-i18n="district_schedule_title">Creating Attendance Schedules</span></h3>
+            <p data-i18n="district_schedule_text">Create schedules for peace keepers by selecting shift, day, and members. Optionally send SMS notifications.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-id-card"></i> <span data-i18n="district_idcard_title">Managing Identity Cards</span></h3>
+            <p data-i18n="district_idcard_text">Review and approve/deny identity card requests from peace keepers in your district. Use batch operations for multiple approvals.</p>
+        </div>
+    </div>
+
+    <!-- SUB-CITY STAFF TAB -->
+    <div id="subcity-staff" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-user-tie"></i> <span data-i18n="staff_title">Sub-City Staff User Training</span></h2>
+            <div class="tip-box"><i class="fas fa-info-circle"></i> <strong data-i18n="staff_summary_title">Role Summary:</strong> <span data-i18n="staff_summary_text">Sub-City Staff are operational personnel who work at the sub-city level. They can register peace keepers and crime cases for ANY district within their sub-city.</span></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-globe"></i> <span data-i18n="staff_scope_title">Your Scope</span></h3>
+            <p data-i18n="staff_scope_text">Unlike Blok/Ketena users who are limited to their specific area, you can work across ALL districts in your sub-city.</p>
+        </div>
+    </div>
+
+    <!-- SUB-CITY ADMIN TAB -->
+    <div id="subcity-admin" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-city"></i> <span data-i18n="subadmin_title">Sub-City Admin Training</span></h2>
+            <div class="tip-box"><i class="fas fa-info-circle"></i> <strong data-i18n="subadmin_summary_title">Role Summary:</strong> <span data-i18n="subadmin_summary_text">Sub-City Admins are senior administrators who oversee all districts in their sub-city. They approve certificate requests, manage district users, and have full visibility of their sub-city.</span></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-certificate"></i> <span data-i18n="subadmin_cert_title">Certificate Management (Most Important)</span></h3>
+            <p data-i18n="subadmin_cert_text">As a Sub-City Admin, you are the FIRST approver for certificate requests from districts. Review, preview, and approve/reject requests.</p>
+        </div>
+    </div>
+
+    <!-- CITY USER TAB -->
+    <div id="city" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-landmark"></i> <span data-i18n="city_title">City User Training</span></h2>
+            <div class="tip-box"><i class="fas fa-info-circle"></i> <strong data-i18n="city_summary_title">Role Summary:</strong> <span data-i18n="city_summary_text">City Users have the highest level of administrative authority, with complete visibility across ALL sub-cities. They provide final approval for certificates and can generate certificates directly.</span></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-certificate"></i> <span data-i18n="city_cert_title">Certificate Management (Final Approval)</span></h3>
+            <p data-i18n="city_cert_text">You provide the FINAL approval for certificates after Sub-City Admins have approved them. You can also generate certificates directly.</p>
+        </div>
+    </div>
+
+    <!-- SYSTEM ADMIN TAB -->
+    <div id="system-admin" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-server"></i> <span data-i18n="sysadmin_title">System Admin Training</span></h2>
+            <div class="tip-box"><i class="fas fa-info-circle"></i> <strong data-i18n="sysadmin_summary_title">Role Summary:</strong> <span data-i18n="sysadmin_summary_text">System Admins manage the technical and administrative aspects of the system. There are three types: District System Admin, Sub-City System Admin, and Super Admin.</span></div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-users-gear"></i> <span data-i18n="sysadmin_compare_title">System Admin Role Comparison</span></h3>
+            <table class="data-table">
+                <thead><tr><th data-i18n="feature">Feature</th><th data-i18n="district_sys">District System Admin</th><th data-i18n="subcity_sys">Sub-City System Admin</th><th data-i18n="super_admin">Super Admin</th></tr></thead>
+                <tbody>
+                    <tr><td data-i18n="scope">Scope</td><td data-i18n="scope_district">Single District</td><td data-i18n="scope_subcity">Entire Sub-City</td><td data-i18n="scope_city">Entire City</td></tr>
+                    <tr><td data-i18n="user_manage">Users They Can Manage</td><td data-i18n="manage_district">Staff, Ketena, Blok</td><td data-i18n="manage_subcity">District users</td><td data-i18n="manage_city">ALL users</td></tr>
+                    <tr><td data-i18n="activity_logs">View Activity Logs</td><td class="check-no">❌ No</td><td class="check-no">❌ No</td><td class="check-yes">✅ Yes</td></tr>
+                    <tr><td data-i18n="bulk_reg">Bulk Registration</td><td class="check-no">❌ No</td><td class="check-no">❌ No</td><td class="check-yes">✅ Yes</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- COMMON FEATURES TAB -->
+    <div id="common" class="tab-content">
+        <div class="card">
+            <h2><i class="fas fa-tools"></i> <span data-i18n="common_title">Common Features for All Users</span></h2>
+            <p data-i18n="common_text">These features are available to most user types (with varying permissions).</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-search"></i> <span data-i18n="search_title">Searching and Filtering</span></h3>
+            <p data-i18n="search_text">Use the search bar to find records by name, ID, or phone number. Use dropdown filters to narrow down by location, date, or status.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-download"></i> <span data-i18n="export_title">Exporting Data</span></h3>
+            <p data-i18n="export_text">Export data as CSV, Excel, or Print for reports and analysis.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-language"></i> <span data-i18n="language_title">Changing Language</span></h3>
+            <p data-i18n="language_text">Click the language button in the top bar to switch between English, Amharic, Afaan Oromoo, and Tigrinya.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-palette"></i> <span data-i18n="theme_title">Changing Theme</span></h3>
+            <p data-i18n="theme_text">Choose from Light, Dark, High Contrast, Sepia, or Blue Light themes for comfortable viewing.</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p><i class="fas fa-copyright"></i> 2026 Addis Ababa Peace & Security Bureau Management System</p>
+    <p data-i18n="footer_text">Official Training Tutorial - Version 1.0</p>
+    <p><i class="fas fa-envelope"></i> <span data-i18n="footer_support">For support, contact your system administrator</span></p>
+</div>
+
+<div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+    // ========== MULTILINGUAL TRANSLATIONS ==========
+    const translations = {
+        en: {
+            title: "Peace & Security Management System",
+            subtitle: "Complete Training Tutorial for All User Types",
+            badge: "Official Training Guide",
+            nav_overview: "Overview",
+            nav_blok: "Blok User",
+            nav_ketena: "Ketena User",
+            nav_district: "District User",
+            nav_subcity_staff: "Sub-City Staff",
+            nav_subcity_admin: "Sub-City Admin",
+            nav_city: "City User",
+            nav_system_admin: "System Admin",
+            nav_common: "Common Features",
+            overview_title: "System Overview",
+            overview_text: "The Peace & Security Management System is a comprehensive platform designed for the Addis Ababa Peace & Security Bureau. It manages peace keepers, crime cases, attendance, certificates, identity cards, and communication across all administrative levels of the city.",
+            overview_tip_title: "Who is this training for?",
+            overview_tip_text: "This tutorial covers all user types from Blok users (field level) to Super Admins (system administrators).",
+            hierarchy_title: "System Hierarchy",
+            city_level: "City",
+            subcity_level: "Sub-City",
+            district_level: "District",
+            ketena_level: "Ketena",
+            blok_level: "Blok",
+            roles_title: "User Roles at a Glance",
+            role_blok: "Blok User",
+            role_blok_desc: "Field-level user - Manages a single block",
+            role_ketena: "Ketena User",
+            role_ketena_desc: "Zone-level user - Manages a single Ketena",
+            role_district: "District User",
+            role_district_desc: "District-level manager - Approves and manages",
+            role_subcity_staff: "Sub-City Staff",
+            role_subcity_staff_desc: "Sub-City operational staff - Data entry",
+            role_subcity_admin: "Sub-City Admin",
+            role_subcity_admin_desc: "Sub-City administrator - Approves certificates",
+            role_city: "City User",
+            role_city_desc: "City-level administrator - Full city-wide oversight",
+            role_system_admin: "System Admin",
+            role_system_admin_desc: "Technical administrator - User management",
+            blok_title: "Blok User Training",
+            blok_summary_title: "Role Summary:",
+            blok_summary_text: "Blok users are field-level personnel who manage a specific block within a Ketena.",
+            login_title: "Login and First Steps",
+            step1_title: "Access the Login Page",
+            step1_text: "Open your browser and navigate to the system URL provided by your administrator.",
+            step2_title: "Enter Your Credentials",
+            step2_text: "Username: Your assigned username<br>PIN/Password: Your 6-digit PIN",
+            step3_title: "Complete CAPTCHA (if shown)",
+            step3_text: "Enter the security code exactly as displayed. It is case-sensitive.",
+            step4_title: "Click Login",
+            step4_text: "You will be taken to your personalized dashboard.",
+            dashboard_title: "Your Dashboard",
+            dashboard_text: "As a Blok user, your dashboard shows:",
+            component: "Component",
+            description: "Description",
+            welcome_section: "Welcome Section",
+            welcome_desc: "Shows your name, role (Blok), and location",
+            stats_cards: "Statistics Cards",
+            stats_desc: "Total peace keepers, crime cases, active members, pending members in your Blok",
+            quick_actions: "Quick Actions",
+            quick_desc: "View Peace Keepers, View Crime Cases, QR Attendance, Request Identity Card",
+            register_pk_title: "Registering a Peace Keeper",
+            reg_step1: "Navigate to Register Peace Keeper",
+            reg_step1_text: "Click Register Peace Keeper in the sidebar menu.",
+            reg_step2: "Fill Registration Information",
+            reg_step2_text: "Member Type: Select 'Peace Keepers'<br>Round: Select appropriate round",
+            reg_step3: "Fill Personal Information",
+            reg_step3_text: "Full Name, Gender, Age (18+), Date of Birth (Ethiopian), Birth Place",
+            reg_step4: "Address Information (Auto-filled)",
+            reg_step4_text: "Ketena and Blok are auto-filled with your location.",
+            reg_step5: "Contact Information",
+            reg_step5_text: "Telephone (09xxxxxxxx), Emergency Contact",
+            reg_step6: "Upload Photo",
+            reg_step6_text: "Select a photo (JPG/PNG, max 5MB)",
+            reg_step7: "Submit",
+            reg_step7_text: "Click Register Peace Keeper and wait for confirmation.",
+            reg_tip: "Pro Tip: If you enter Age first, the system will suggest a Date of Birth automatically!",
+            register_crime_title: "Registering a Crime Case",
+            crime_step1: "Navigate to Register Crime",
+            crime_step1_text: "Click Register Crime in the sidebar menu.",
+            crime_step2: "Case Details",
+            crime_step2_text: "Case Name (auto-suggest available), Description",
+            crime_step3: "Date and Time",
+            crime_step3_text: "Date (Ethiopian format), Time",
+            crime_step4: "Location (Auto-filled)",
+            crime_step4_text: "Ketena and Blok are auto-filled",
+            crime_step5: "Response and Status",
+            crime_step5_text: "Initial Response, Current Status, Investigation Start Date, Informed By",
+            crime_step6: "Submit",
+            crime_step6_text: "Click Submit Crime Case",
+            attendance_title: "QR Attendance Check-In/Out",
+            att_step1: "Open Insert Attendance",
+            att_step1_text: "Click Insert Attendance in the sidebar.",
+            att_step2: "For Check-In",
+            att_step2_text: "Select Check In → Start Scanner → Allow camera → Scan QR → Check In",
+            att_step3: "For Check-Out",
+            att_step3_text: "Select Check Out → Enter ID → Check Out",
+            att_warning: "Important: Each peace keeper can only check in ONCE per day.",
+            ketena_title: "Ketena User Training",
+            ketena_summary_title: "Role Summary:",
+            ketena_summary_text: "Ketena users manage a specific zone (Ketena) within a district.",
+            ketena_dashboard_title: "Dashboard Overview",
+            ketena_dashboard_text: "Shows statistics for your ENTIRE Ketena.",
+            ketena_register_title: "Registering Peace Keepers",
+            ketena_register_note: "Key Difference: Your Ketena field is AUTO-FILLED, but you can select different Bloks.",
+            district_title: "District User Training",
+            district_summary_title: "Role Summary:",
+            district_summary_text: "District users oversee an entire district. They approve peace keepers, manage crime cases, create schedules, and manage identity cards.",
+            district_approve_title: "Approving Peace Keepers",
+            district_approve_text: "Review pending peace keepers and change status to Active to approve.",
+            district_schedule_title: "Creating Attendance Schedules",
+            district_schedule_text: "Create schedules by selecting shift, day, and members. Send SMS notifications.",
+            district_idcard_title: "Managing Identity Cards",
+            district_idcard_text: "Review and approve/deny identity card requests.",
+            staff_title: "Sub-City Staff User Training",
+            staff_summary_title: "Role Summary:",
+            staff_summary_text: "Sub-City Staff work across ALL districts in their sub-city.",
+            staff_scope_title: "Your Scope",
+            staff_scope_text: "You can register peace keepers and crime cases for ANY district in your sub-city.",
+            subadmin_title: "Sub-City Admin Training",
+            subadmin_summary_title: "Role Summary:",
+            subadmin_summary_text: "Sub-City Admins oversee all districts and approve certificate requests.",
+            subadmin_cert_title: "Certificate Management",
+            subadmin_cert_text: "You are the FIRST approver for certificate requests from districts.",
+            city_title: "City User Training",
+            city_summary_title: "Role Summary:",
+            city_summary_text: "City Users have complete visibility across ALL sub-cities and provide final certificate approval.",
+            city_cert_title: "Certificate Management",
+            city_cert_text: "You provide FINAL approval for certificates and can generate certificates directly.",
+            sysadmin_title: "System Admin Training",
+            sysadmin_summary_title: "Role Summary:",
+            sysadmin_summary_text: "System Admins manage technical and administrative aspects.",
+            sysadmin_compare_title: "System Admin Role Comparison",
+            feature: "Feature",
+            district_sys: "District System Admin",
+            subcity_sys: "Sub-City System Admin",
+            super_admin: "Super Admin",
+            scope: "Scope",
+            scope_district: "Single District",
+            scope_subcity: "Entire Sub-City",
+            scope_city: "Entire City",
+            user_manage: "Users They Can Manage",
+            manage_district: "Staff, Ketena, Blok",
+            manage_subcity: "District users",
+            manage_city: "ALL users",
+            activity_logs: "View Activity Logs",
+            bulk_reg: "Bulk Registration",
+            common_title: "Common Features for All Users",
+            common_text: "These features are available to most user types.",
+            search_title: "Searching and Filtering",
+            search_text: "Use search bar and filters to find records.",
+            export_title: "Exporting Data",
+            export_text: "Export as CSV, Excel, or Print.",
+            language_title: "Changing Language",
+            language_text: "Switch between English, Amharic, Afaan Oromoo, and Tigrinya.",
+            theme_title: "Changing Theme",
+            theme_text: "Choose from Light, Dark, High Contrast, Sepia, or Blue Light themes.",
+            footer_text: "Official Training Tutorial - Version 1.0",
+            footer_support: "For support, contact your system administrator"
+        },
+        am: {
+            title: "የሰላምና ጸጥታ አስተዳደር ሥርዓት",
+            subtitle: "ለሁሉም የተጠቃሚ ዓይነቶች ሙሉ የሥልጠና መማሪያ",
+            badge: "ይፋዊ የሥልጠና መመሪያ",
+            nav_overview: "አጠቃላይ እይታ",
+            nav_blok: "ብሎክ ተጠቃሚ",
+            nav_ketena: "ቀጠና ተጠቃሚ",
+            nav_district: "ወረዳ ተጠቃሚ",
+            nav_subcity_staff: "ክፍለ ከተማ ሰራተኛ",
+            nav_subcity_admin: "ክፍለ ከተማ አስተዳዳሪ",
+            nav_city: "ከተማ ተጠቃሚ",
+            nav_system_admin: "ሲስተም አስተዳዳሪ",
+            nav_common: "የጋራ ባህሪያት",
+            overview_title: "የሥርዓቱ አጠቃላይ እይታ",
+            overview_text: "የሰላምና ጸጥታ አስተዳደር ሥርዓት ለአዲስ አበባ ሰላምና ጸጥታ ቢሮ የተዘጋጀ ሁሉን አቀፍ መድረክ ነው።",
+            overview_tip_title: "ይህ ሥልጠና ለማን ነው?",
+            overview_tip_text: "ይህ መማሪያ ከብሎክ ተጠቃሚዎች እስከ ሲስተም አስተዳዳሪዎች ድረስ ሁሉንም የተጠቃሚ ዓይነቶች ይሸፍናል።",
+            hierarchy_title: "የሥርዓቱ መዋቅር",
+            city_level: "ከተማ",
+            subcity_level: "ክፍለ ከተማ",
+            district_level: "ወረዳ",
+            ketena_level: "ቀጠና",
+            blok_level: "ብሎክ",
+            roles_title: "የተጠቃሚ ሚናዎች በአንድ በኩል",
+            role_blok: "ብሎክ ተጠቃሚ",
+            role_blok_desc: "የመስክ ተጠቃሚ - አንድ ብሎክ ያስተዳድራል",
+            role_ketena: "ቀጠና ተጠቃሚ",
+            role_ketena_desc: "የዞን ተጠቃሚ - አንድ ቀጠና ያስተዳድራል",
+            role_district: "ወረዳ ተጠቃሚ",
+            role_district_desc: "የወረዳ አስተዳዳሪ - ያጸድቃል እና ያስተዳድራል",
+            role_subcity_staff: "ክፍለ ከተማ ሰራተኛ",
+            role_subcity_staff_desc: "የክፍለ ከተማ የስራ ሰራተኛ - የውሂብ ማስገቢያ",
+            role_subcity_admin: "ክፍለ ከተማ አስተዳዳሪ",
+            role_subcity_admin_desc: "ክፍለ ከተማ አስተዳዳሪ - የምስክር ወረቀቶችን ያጸድቃል",
+            role_city: "ከተማ ተጠቃሚ",
+            role_city_desc: "የከተማ አስተዳዳሪ - ሙሉ የከተማ አጠቃላይ እይታ",
+            role_system_admin: "ሲስተም አስተዳዳሪ",
+            role_system_admin_desc: "ቴክኒካል አስተዳዳሪ - የተጠቃሚ አስተዳደር",
+            blok_title: "የብሎክ ተጠቃሚ ሥልጠና",
+            blok_summary_title: "የሚና ማጠቃለያ፦",
+            blok_summary_text: "ብሎክ ተጠቃሚዎች በቀጠና ውስጥ አንድ የተወሰነ ብሎክ የሚያስተዳድሩ የመስክ ሰራተኞች ናቸው።",
+            login_title: "መግቢያ እና የመጀመሪያ ደረጃዎች",
+            step1_title: "ወደ መግቢያ ገጽ ይሂዱ",
+            step1_text: "አሳሽዎን ይክፈቱ እና በአስተዳዳሪዎ ወደ ተሰጠው የስርዓት አድራሻ ይሂዱ።",
+            step2_title: "የመግቢያ ማረጋገጫዎችዎን ያስገቡ",
+            step2_text: "የተጠቃሚ ስም: የተመደበለት የተጠቃሚ ስም<br>PIN/የይለፍ ቃል: ባለ 6 አሃዝ PIN",
+            step3_title: "CAPTCHA ያጠናቅቁ (ከታየ)",
+            step3_text: "የደህንነት ኮዱን እንደታየው በትክክል ያስገቡ።",
+            step4_title: "ግባ የሚለውን ይጫኑ",
+            step4_text: "ወደ ግላዊ ዳሽቦርድዎ ይወሰዳሉ።",
+            dashboard_title: "የእርስዎ ዳሽቦርድ",
+            dashboard_text: "እንደ ብሎክ ተጠቃሚ፣ የእርስዎ ዳሽቦርድ የሚያሳየው፦",
+            component: "ክፍል",
+            description: "መግለጫ",
+            welcome_section: "እንኳን ደህና መጡ ክፍል",
+            welcome_desc: "ስምዎን፣ ሚናዎን (ብሎክ) እና አካባቢዎን ያሳያል",
+            stats_cards: "የስታቲስቲክስ ካርዶች",
+            stats_desc: "በብሎክዎ ውስጥ ያሉ አጠቃላይ የሰላም ሀላዊዎች፣ የወንጀል ጉዳዮች፣ ንቁ አባላት፣ በመጠባበቅ ላይ ያሉ አባላት",
+            quick_actions: "ፈጣን ድርጊቶች",
+            quick_desc: "የሰላም ሀላዊዎችን ይመልከቱ፣ የወንጀል ጉዳዮችን ይመልከቱ፣ የQR መገኘት፣ የመታወቂያ ካርድ ይጠይቁ",
+            register_pk_title: "የሰላም ሀላዊ መመዝገብ",
+            reg_step1: "ወደ ሰላም ሀላዊ መመዝገቢያ ይሂዱ",
+            reg_step1_text: "በጎን ባር ምናሌ ውስጥ ሰላም ሀላዊ መዝግብ የሚለውን ጠቅ ያድርጉ።",
+            reg_step2: "የምዝገባ መረጃ ይሙሉ",
+            reg_step2_text: "የአባል ዓይነት፡ \"የሰላም ሀላዊ\" ይምረጡ<br>ዙር፡ ተገቢውን ዙር ይምረጡ",
+            reg_step3: "የግል መረጃ ይሙሉ",
+            reg_step3_text: "ሙሉ ስም፣ ጾታ፣ ዕድሜ (ከ18 በላይ)፣ የትውልድ ቀን (ኢትዮጵያዊ)፣ የትውልድ ቦታ",
+            reg_step4: "የአድራሻ መረጃ (በራስ-ሰር የሚሞላ)",
+            reg_step4_text: "ቀጠና እና ብሎክ በራስ-ሰር ይሞላሉ",
+            reg_step5: "የመገናኛ መረጃ",
+            reg_step5_text: "ስልክ ቁጥር (09xxxxxxxx)፣ የአደጋ ጊዜ መገናኛ",
+            reg_step6: "ፎቶ ስቀል",
+            reg_step6_text: "ፎቶ ይምረጡ (JPG/PNG፣ ከፍተኛ 5ሜባ)",
+            reg_step7: "አስገባ",
+            reg_step7_text: "ሰላም ሀላዊ መዝግብ የሚለውን ጠቅ ያድርጉ እና ማረጋገጫ ይጠብቁ",
+            reg_tip: "ምክር፡ መጀመሪያ ዕድሜ ካስገቡ፣ ስርዓቱ በራስ-ሰር የትውልድ ቀን ይጠቁማል!",
+            register_crime_title: "የወንጀል ጉዳይ መመዝገብ",
+            crime_step1: "ወደ ወንጀል መመዝገቢያ ይሂዱ",
+            crime_step1_text: "በጎን ባር ምናሌ ውስጥ ወንጀል መዝግብ የሚለውን ጠቅ ያድርጉ።",
+            crime_step2: "የጉዳይ ዝርዝሮች",
+            crime_step2_text: "የጉዳይ ስም (ራስ-ሰር አጋዥ)፣ መግለጫ",
+            crime_step3: "ቀን እና ሰዓት",
+            crime_step3_text: "ቀን (ኢትዮጵያዊ ቅርጸት)፣ ሰዓት",
+            crime_step4: "ቦታ (በራስ-ሰር የሚሞላ)",
+            crime_step4_text: "ቀጠና እና ብሎክ በራስ-ሰር ይሞላሉ",
+            crime_step5: "ምላሽ እና ሁኔታ",
+            crime_step5_text: "የመጀመሪያ ምላሽ፣ ወቅታዊ ሁኔታ፣ የምርመራ መጀመሪያ ቀን፣ ያሳወቀው ሰው",
+            crime_step6: "አስገባ",
+            crime_step6_text: "የወንጀል ጉዳይ አስገባ የሚለውን ጠቅ ያድርጉ",
+            attendance_title: "የQR መገኘት መግቢያ/መውጫ",
+            att_step1: "መገኘት አስገባ ይክፈቱ",
+            att_step1_text: "በጎን ባር ውስጥ መገኘት አስገባ የሚለውን ጠቅ ያድርጉ።",
+            att_step2: "ለመግቢያ",
+            att_step2_text: "ግባ ትርን ይምረጡ → ስካነር ጀምር → ካሜራ ፍቀድ → QR ቃኝ → ግባ",
+            att_step3: "ለመውጫ",
+            att_step3_text: "ውጣ ትርን ይምረጡ → መታወቂያ ያስገቡ → ውጣ",
+            att_warning: "አስፈላጊ፡ እያንዳንዱ የሰላም ሀላዊ በቀን አንድ ጊዜ ብቻ መግባት ይችላል።",
+            footer_text: "ይፋዊ የሥልጠና መማሪያ - ስሪት 1.0",
+            footer_support: "ለድጋፍ፣ የስርዓት አስተዳዳሪዎን ያግኙ"
+        },
+        om: {
+            title: "Sirna Nagaa fi Nageenyaa",
+            subtitle: "Qabiyyee Leenjii Guutuu Fudhatawwan Hundaaf",
+            badge: "Qajeelcha Leenjii Iddoo",
+            nav_overview: "Ilaalcha Waliigalaa",
+            nav_blok: "Fayyadamaa Bulookii",
+            nav_ketena: "Fayyadamaa Qe",
+            nav_district: "Fayyadamaa Aanaa",
+            nav_subcity_staff: "Hojjetaa Ganda Magaalaa",
+            nav_subcity_admin: "Bulchaa Ganda Magaalaa",
+            nav_city: "Fayyadamaa Magaalaa",
+            nav_system_admin: "Bulchaa Sirnaa",
+            nav_common: "Amaloota Waliigalaa",
+            overview_title: "Ilaalcha Sirnaa",
+            overview_text: "Sirni Bulchiinsa Nagaa fi Nageenyaa sirna bal'inaa fi guutuu ta'e kan Buuroo Nagaa fi Nageenyaa Finfinneef qopheeffameedha.",
+            overview_tip_title: "Leenjiin kun eenyuf?",
+            overview_tip_text: "Qajeelchi kun fudhatawwan gosa hundaa kanneen fayyadamtoota Bulookii hanga bulchitoota Sirnaa hammata.",
+            hierarchy_title: "Caasaa Sirnaa",
+            city_level: "Magaalaa",
+            subcity_level: "Ganda Magaalaa",
+            district_level: "Aanaa",
+            ketena_level: "Qe",
+            blok_level: "Bulookii",
+            roles_title: "Gaawwan Fayyadamaa Saratti",
+            role_blok: "Fayyadamaa Bulookii",
+            role_blok_desc: "Fayyadamaa Dirree - Bulookii tokko to'ata",
+            role_ketena: "Fayyadamaa Qe",
+            role_ketena_desc: "Fayyadamaa Godina - Qe tokko to'ata",
+            role_district: "Fayyadamaa Aanaa",
+            role_district_desc: "Bulchaa Aanaa - Hayyama fi to'ata",
+            role_subcity_staff: "Hojjetaa Ganda Magaalaa",
+            role_subcity_staff_desc: "Hojjetaa Ganda Magaalaa - Galmee caalmaatti",
+            role_subcity_admin: "Bulchaa Ganda Magaalaa",
+            role_subcity_admin_desc: "Bulchaa Ganda Magaalaa - Ragaalee hayyama",
+            role_city: "Fayyadamaa Magaalaa",
+            role_city_desc: "Bulchaa Magaalaa - Ilaalcha magaalaa guutuu",
+            role_system_admin: "Bulchaa Sirnaa",
+            role_system_admin_desc: "Bulchaa Tekinikaalaa - Bulchiinsa fayyadamaa",
+            blok_title: "Leenjii Fayyadamaa Bulookii",
+            blok_summary_title: "Gabaabni Gahee:",
+            blok_summary_text: "Fayyadamtoonni Bulookii hojjattoota dirree kanneen bulookii murtaa'e keessatti bulchuudha.",
+            login_title: "Seensa fi Tarkaanfiwwan Jalqabaa",
+            step1_title: "Gara Fuula Seensaa Seenuu",
+            step1_text: "Browsar keessaa banii gara teessoo sirnaa bulchaan keessan kennamanitti deemaa.",
+            step2_title: "Barnoota Keessan Galchaa",
+            step2_text: "Maqaan Fayyadamaa: Maqaan fayyadamaa isinii ramadame<br>PIN/Jecha Icciitii: PIN 6 lakkoofsa",
+            step3_title: "CAPTCHA Xumuri (yoo mul'ate)",
+            step3_text: "Koodii nageenyaa akka argisiisetti sirriitti galchi.",
+            step4_title: "Seenuu Cuqaasi",
+            step4_text: "Daashboordii keessanitti geeffamtu.",
+            dashboard_title: "Daashboordii Keessan",
+            dashboard_text: "Fayyadamaa Bulookii taatee, daashboordiin keessan agarsisa:",
+            component: "Kutaa",
+            description: "Ibsa",
+            welcome_section: "Kutaa Bagaydhamaa",
+            welcome_desc: "Maqaa keessan, gahee keessan (Bulookii), fi bakka keessan agarsisa",
+            stats_cards: "Kaardiiwwan Lakkoofsaa",
+            stats_desc: "Waligala nagaa eegduu, dhimma yakkaa, miseensa sochii qabu, miseensa eegaa jiraa bulookii keessan keessatti",
+            quick_actions: "Gochoota Dursanii",
+            quick_desc: "Nagaa Eegduu Ilaali, Dhimma Yakkaa Ilaali, Argamuu QR, Kaardii Eenyummaa Gaafadhu",
+            register_pk_title: "Nagaa Eegduu Galmeessuu",
+            reg_step1: "Gara Galmeessuu Nagaa Eegduu Deemi",
+            reg_step1_text: "Gara Galmeessuu Nagaa Eegduu kan jedhuu cuqaasi.",
+            reg_step2: "Odeeffannoo Galmeessaa Guuti",
+            reg_step2_text: "Gosa Miseensaa: 'Nagaa Eegduu' filadhu<br>Marsaa: Marsaa mijaawaa filadhu",
+            reg_step3: "Odeeffannoo Dhuunfaa Guuti",
+            reg_step3_text: "Maqaa Guutuu, Saala, Umurii (18+), Guyyaa Dhalootaa (Itoophiyaa), Bakka Dhalootaa",
+            reg_step4: "Odeeffannoo Teessoo (Of-salaan Guutame)",
+            reg_step4_text: "Qe fi Bulookiin of-salaan guutama",
+            reg_step5: "Odeeffannoo Quunnamtii",
+            reg_step5_text: "Lakkoofsa Bilbilaa (09xxxxxxxx), Quunnamtii Yeroo Baay'ee",
+            reg_step6: "Suuraa Fe'i",
+            reg_step6_text: "Suuraa filadhu (JPG/PNG, max 5MB)",
+            reg_step7: "Galmeessi",
+            reg_step7_text: "Nagaa Eegduu Galmeessi jedhu cuqaasii mirkaneessa eegi.",
+            reg_tip: "Gorsa: Yoo umurii duraan galchitan, sirni guyyaa dhalootaa of-salaan isinii akeeka!",
+            register_crime_title: "Dhimma Yakkaa Galmeessuu",
+            crime_step1: "Gara Galmeessuu Yakkaa Deemi",
+            crime_step1_text: "Gara Galmeessuu Yakkaa jedhuu cuqaasi.",
+            crime_step2: "Ibsa Dhimmichaa",
+            crime_step2_text: "Maqaa Dhimmichaa (Gargaarsa of-salaan jira), Ibsa",
+            crime_step3: "Guyyaa fi Yeroo",
+            crime_step3_text: "Guyyaa (Akkata Itoophiyaa), Yeroo",
+            crime_step4: "Bakka (Of-salaan Guutame)",
+            crime_step4_text: "Qe fi Bulookiin of-salaan guutamu",
+            crime_step5: "Deebii fi Haala",
+            crime_step5_text: "Deebii Jalqabaa, Haala Ammaa, Guyyaa Jalqaba Qorannoo, Kan Beeksise",
+            crime_step6: "Ergi",
+            crime_step6_text: "Dhimma Yakkaa Ergi jedhu cuqaasi",
+            attendance_title: "Galii/Ba'ii Argamuu QR",
+            att_step1: "Argamuu Galchi Bani",
+            att_step1_text: "Argamuu Galchi jedhuu cuqaasi.",
+            att_step2: "Galii:",
+            att_step2_text: "Galii tab filadhu → Sikaanarii jalqabi → Kaameraa hayyami → QR sikaanii → Galii",
+            att_step3: "Ba'ii:",
+            att_step3_text: "Ba'ii tab filadhu → Eeyyee galchi → Ba'i",
+            att_warning: "Hubachiisa: Nagaan eegduu tokko guyyatti YEROO TOKOO qofa galmaa'uu danda'a.",
+            footer_text: "Qajeelcha Leenjii Iddoo - Fooyya'iinsa 1.0",
+            footer_support: "Gargaarsaaf, bulchaa sirnaa keessan qunnamaa"
+        },
+        ti: {
+            title: "ስርዓተ ምምሕዳር ሰላምን ደህንነትን",
+            subtitle: "ምሉእ መምሃሪ ስልጠና ኩሎም ዓይነታት ተጠቀምቲ",
+            badge: "ይፋዊ መምርሒ ስልጠና",
+            nav_overview: "ኣጠቓላሊ ትርኢት",
+            nav_blok: "ተጠቃሚ ብሎክ",
+            nav_ketena: "ተጠቃሚ ቀጠና",
+            nav_district: "ተጠቃሚ ወረዳ",
+            nav_subcity_staff: "ሰራሕተኛ ንኡስ ከተማ",
+            nav_subcity_admin: "ኣመሓዳሪ ንኡስ ከተማ",
+            nav_city: "ተጠቃሚ ከተማ",
+            nav_system_admin: "ኣመሓዳሪ ሲስተም",
+            nav_common: "ባህርያት ምሉእ",
+            overview_title: "ኣጠቓላሊ ትርኢት ሲስተም",
+            overview_text: "ስርዓተ ምምሕዳር ሰላምን ደህንነትን መድረኽ ምሉእ ብምሉእ ንቢሮ ሰላምን ደህንነትን ኣዲስ ኣበባ ተዳልዩ እዩ።",
+            overview_tip_title: "እዚ ስልጠና ንመን እዩ?",
+            overview_tip_text: "እዚ መምሃሪ ኩሎም ዓይነታት ተጠቀምቲ ካብ ተጠቀምቲ ብሎክ ክሳዕ ኣመሓዳርቲ ሲስተም ዘምልክት እዩ።",
+            hierarchy_title: "መዋቕር ሲስተም",
+            city_level: "ከተማ",
+            subcity_level: "ንኡስ ከተማ",
+            district_level: "ወረዳ",
+            ketena_level: "ቀጠና",
+            blok_level: "ብሎክ",
+            roles_title: "ሓላፍነታት ተጠቀምቲ ብሓደ ኣብነት",
+            role_blok: "ተጠቃሚ ብሎክ",
+            role_blok_desc: "ተጠቃሚ ደረጃ ግዝራ - ሓደ ብሎክ ዘምሕድር",
+            role_ketena: "ተጠቃሚ ቀጠና",
+            role_ketena_desc: "ተጠቃሚ ዞባ - ሓደ ቀጠና ዘምሕድር",
+            role_district: "ተጠቃሚ ወረዳ",
+            role_district_desc: "ኣመሓዳሪ ወረዳ - የጸድቕን የምሕድርን",
+            role_subcity_staff: "ሰራሕተኛ ንኡስ ከተማ",
+            role_subcity_staff_desc: "ሰራሕተኛ ንኡስ ከተማ - ዳታ የእትው",
+            role_subcity_admin: "ኣመሓዳሪ ንኡስ ከተማ",
+            role_subcity_admin_desc: "ኣመሓዳሪ ንኡስ ከተማ - ሰርተፊኬት የጸድቕ",
+            role_city: "ተጠቃሚ ከተማ",
+            role_city_desc: "ኣመሓዳሪ ከተማ - መላእ ከተማ ዝምልከት",
+            role_system_admin: "ኣመሓዳሪ ሲስተም",
+            role_system_admin_desc: "ኣመሓዳሪ ቴክኒካዊ - ኣመሓዳሪ ተጠቀምቲ",
+            blok_title: "ስልጠና ተጠቃሚ ብሎክ",
+            blok_summary_title: "ጠቓሊል ሓላፍነት፦",
+            blok_summary_text: "ተጠቀምቲ ብሎክ ሰራሕተኛታት ደረጃ ግዝራ እዮም ኣብ ውሽጢ ቀጠና ሓደ ብሎክ ዘምሕድሩ።",
+            login_title: "ምእታውን ቀዳሞት ስጕምትታትን",
+            step1_title: "ናብ ገጽ ምእታው ከይድ",
+            step1_text: "ብራውዘርካ ከፈት እሞ ናብቲ ኣድራሻ ሲስተም ካብ ኣመሓዳሪካ ተዋሂቡካ ከይድ።",
+            step2_title: "ምስክርነታትካ ኣእትው",
+            step2_text: "ሽም ተጠቃሚ፡ እቲ ተመዲቡልካ ሽም ተጠቃሚ<br>PIN/መሕለፊ ቃል፡ ባለ 6 ኣሃዝ PIN",
+            step3_title: "CAPTCHA ዕጽዎ (እንተ ተራእዩ)",
+            step3_text: "ነቲ ኮድ ደህንነት ከምቲ ተራእዩ ብትኽክል ኣእትዎ።",
+            step4_title: "እቶ ዝብል ጠውቕ",
+            step4_text: "ናብ ዳሽቦርድ ናይ ግልኻ ትወሰድ።",
+            dashboard_title: "ዳሽቦርድካ",
+            dashboard_text: "ከም ተጠቃሚ ብሎክ፣ ዳሽቦርድካ ዘርኢ፦",
+            component: "ክፋል",
+            description: "መግለጺ",
+            welcome_section: "ክፋል እንቋዕ ብደሓን መጻእኩም",
+            welcome_desc: "ሽምካ፣ ሓላፍነትካ (ብሎክ)፣ ከምኡውን ከባቢካ ዘርኢ",
+            stats_cards: "ካርዳት ስታቲስቲክስ",
+            stats_desc: "ኣብ ብሎክካ ምሉእ ሓላውቲ ሰላም፣ ጉዳያት ወንጀል፣ ንጡፋት ኣባላት፣ ኣብ ምጽባይ ዘለዉ ኣባላት",
+            quick_actions: "ቅልጡፍ ተግባራት",
+            quick_desc: "ሓላውቲ ሰላም ርኣይ፣ ጉዳያት ወንጀል ርኣይ፣ ምጽንባር QR፣ ካርድ መለለዪ ሕተት",
+            register_pk_title: "ሓላዊ ሰላም ምዝጋብ",
+            reg_step1: "ናብ ምዝጋብ ሓላዊ ሰላም ከይድ",
+            reg_step1_text: "ኣብ ሜኑ ጎኒ ምልክትን 'ሓላዊ ሰላም መዝግብ' ጠውቕ።",
+            reg_step2: "ሓበሬታ ምዝገባ ምላእ",
+            reg_step2_text: "ዓይነት ኣባል፡ 'ሓላዊ ሰላም' ምረጽ<br�ዙር፡ ብቑዕ ዙር ምረጽ",
+            reg_step3: "ሓበሬታ ውልቃዊ ምላእ",
+            reg_step3_text: "ምሉእ ሽም፣ ጾታ፣ ዕድመ (18+)፣ ዕለተ ልደት (ኢትዮጵያዊ)፣ ቦታ ልደት",
+            reg_step4: "ሓበሬታ ኣድራሻ (ብርሳስ ዝትመላእ)",
+            reg_step4_text: "ቀጠናን ብሎክን ብርሳስ ይምላእ",
+            reg_step5: "ሓበሬታ ርክብ",
+            reg_step5_text: "ቁጽሪ ተሌፎን (09xxxxxxxx)፣ ርክብ ህጹጽ",
+            reg_step6: "ፎቶ ምስቃል",
+            reg_step6_text: "ፎቶ ምረጽ (JPG/PNG፣ ዝበዝሐ 5ሜባ)",
+            reg_step7: "ኣእትው",
+            reg_step7_text: "'ሓላዊ ሰላም መዝግብ' ጠውቕ እሞ ምልክት ምጽናዕ ጸበ።",
+            reg_tip: "ምኽሪ፡ ቅድም ዕድመ እንተ ኣእቲኻ፡ ሲስተም ብርሳስ ዕለተ ልደት ይጠቁም!",
+            register_crime_title: "ጉዳይ ወንጀል ምዝጋብ",
+            crime_step1: "ናብ ምዝጋብ ወንጀል ከይድ",
+            crime_step1_text: "ኣብ ሜኑ ጎኒ 'ወንጀል መዝግብ' ጠውቕ።",
+            crime_step2: "ዝርዝራት ጉዳይ",
+            crime_step2_text: "ሽም ጉዳይ (ረድኤት ብርሳስ ኣሎ)፣ መግለጺ",
+            crime_step3: "ዕለትን ሰዓትን",
+            crime_step3_text: "ዕለት (ቅርጺ ኢትዮጵያ)፣ ሰዓት",
+            crime_step4: "ቦታ (ብርሳስ ዝትመላእ)",
+            crime_step4_text: "ቀጠናን ብሎክን ብርሳስ ይምላእ",
+            crime_step5: "ምላሽን ኩነትን",
+            crime_step5_text: "ቀዳማይ ምላሽ፣ ሕጂ ዘሎ ኩነት፣ ዕለተ ምጅማር ምርመራ፣ ዘፍለጠ ሰብ",
+            crime_step6: "ኣእትው",
+            crime_step6_text: "'ጉዳይ ወንጀል ኣእትው' ጠውቕ",
+            attendance_title: "ምእታው/ምውጻእ ምጽንባር QR",
+            att_step1: "ምጽንባር ኣእትው ክፈት",
+            att_step1_text: "ኣብ ሜኑ ጎኒ 'ምጽንባር ኣእትው' ጠውቕ።",
+            att_step2: "ንምእታው",
+            att_step2_text: "'እቶ' ታብ ምረጽ → ስካነር ጀምር → ካሜራ ፍቀድ → QR ቅንዕ → እቶ",
+            att_step3: "ንምውጻእ",
+            att_step3_text: "'ውጻ' ታብ ምረጽ → መለለዪ ኣእትው → ውጻ",
+            att_warning: "ኣገዳሲ፡ ሓደ ሓላዊ ሰላም ብዕለት ሓደ ሳዕ ጥራይ ክእቶ ይኽእል እዩ።",
+            footer_text: "መምርሒ ስልጠና ይፋዊ - ስሪት 1.0",
+            footer_support: "ንሓገዝ፡ ኣመሓዳሪ ሲስተምካ ርኸብ"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('preferredLanguage', lang);
+        
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Translate all elements with data-i18n attribute
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang] && translations[lang][key]) {
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translations[lang][key];
+                } else if(el.tagName === 'IMG') {
+                    el.alt = translations[lang][key];
+                } else {
+                    el.innerHTML = translations[lang][key];
+                }
+            }
+        });
+        
+        // Also translate table headers and other dynamic content
+        document.querySelectorAll('th').forEach(th => {
+            const key = th.getAttribute('data-i18n');
+            if(key && translations[lang] && translations[lang][key]) {
+                th.innerHTML = translations[lang][key];
+            }
+        });
+    }
+
+    // Language selector event listeners
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            setLanguage(btn.getAttribute('data-lang'));
+        });
+    });
+
+    // Tab switching
+    function switchToTab(tabId) {
+        // Update active tab in navigation
+        document.querySelectorAll('.nav-tabs a').forEach(link => {
+            link.classList.remove('active');
+            if(link.getAttribute('data-tab') === tabId) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Show selected tab content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Add click handlers to nav tabs
+    document.querySelectorAll('.nav-tabs a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = link.getAttribute('data-tab');
+            switchToTab(tabId);
+        });
+    });
+    
+    // Scroll to top button
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTop.classList.add('visible');
+        } else {
+            scrollTop.classList.remove('visible');
+        }
+    });
+    
+    scrollTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Get current hash from URL
+    const hash = window.location.hash.substring(1);
+    if (hash && document.getElementById(hash)) {
+        switchToTab(hash);
+    }
+    
+    // Update URL hash when switching tabs
+    window.switchToTab = switchToTab;
+    
+    // Load saved language preference
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if(savedLang && translations[savedLang]) {
+        setLanguage(savedLang);
+    } else {
+        setLanguage('en');
+    }
+</script>
+</body>
+</html>
+```
